@@ -107,6 +107,7 @@ module.exports = function (proxy, allowedHost) {
       // This lets us fetch source contents from webpack for the error overlay
       devServer.app.use(evalSourceMapMiddleware(devServer));
 
+      // 如果src/setupProxy.js这个文件存在，就用这个文件里的代码处理跨域
       if (fs.existsSync(paths.proxySetup)) {
         // This registers user provided middleware for proxy reasons
         require(paths.proxySetup)(devServer.app);
